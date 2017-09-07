@@ -53,28 +53,25 @@
 
     <script>
         window.onload = function() {
-            //需求:鼠标移动到那个li上面,让对应的span显示出来.
-
-            //三部曲
+           
             var liArr = document.getElementsByTagName("li");
             var spArr = document.getElementsByTagName("span");
 
-            //for循环绑定事件
+           
             for (var i = 0; i < liArr.length; i++) {
-                //自定义属性.
+               
                 liArr[i].setAttribute("index", i);
 
                 liArr[i].onmouseover = function() {
-                    //1.点亮盒子.(排他思想)
-                    //干掉所有人
+                 
                     for (var j = 0; j < liArr.length; j++) {
                         liArr[j].removeAttribute("class");
-                        //干掉所有span
+                    
                         spArr[j].removeAttribute("class");
                     }
-                    //剩下我自己
+                    
                     this.setAttribute("class", "current");
-                    //2.获取该位置的索引值.
+                  
                     spArr[this.getAttribute("index")].setAttribute("class", "show");
                 }
             }
