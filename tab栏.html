@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .box1 {
+            width: 400px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+            border: 1px solid #000;
+        }
+        
+        ul {
+            overflow: hidden;
+        }
+        
+        li {
+            float: left;
+            width: 80px;
+            height: 40px;
+            text-align: center;
+            cursor: pointer;
+            background-color: skyblue;
+            font: 500 20px/40px "simsun";
+        }
+        
+        span {
+            display: none;
+            height: 260px;
+            width: 400px;
+            text-align: center;
+            font: 700 80px/260px "simsum";
+            background-color: pink;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .current {
+            background-color: pink;
+        }
+    </style>
+
+    <script>
+        window.onload = function() {
+            //需求:鼠标移动到那个li上面,让对应的span显示出来.
+
+            //三部曲
+            var liArr = document.getElementsByTagName("li");
+            var spArr = document.getElementsByTagName("span");
+
+            //for循环绑定事件
+            for (var i = 0; i < liArr.length; i++) {
+                //自定义属性.
+                liArr[i].setAttribute("index", i);
+
+                liArr[i].onmouseover = function() {
+                    //1.点亮盒子.(排他思想)
+                    //干掉所有人
+                    for (var j = 0; j < liArr.length; j++) {
+                        liArr[j].removeAttribute("class");
+                        //干掉所有span
+                        spArr[j].removeAttribute("class");
+                    }
+                    //剩下我自己
+                    this.setAttribute("class", "current");
+                    //2.获取该位置的索引值.
+                    spArr[this.getAttribute("index")].setAttribute("class", "show");
+                }
+            }
+
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="box1" id="box1">
+        <ul>
+            <li class="current">裤子</li>
+            <li>袜子</li>
+            <li>裙子</li>
+            <li>鞋子</li>
+            <li>帽子</li>
+        </ul>
+        <span class="show">裤子区域</span>
+        <span>袜子区域</span>
+        <span>裙子区域</span>
+        <span>鞋子区域</span>
+        <span>帽子区域</span>
+    </div>
+
+
+
+</body>
+
+</html>
